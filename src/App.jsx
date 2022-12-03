@@ -7,6 +7,8 @@ import LocationInfo from "./components/LocationInfo";
 import ResidentList from "./components/ResidentList";
 import getRandomNumber from "../utils/getRandomNumber";
 import ErrorMessages from "./components/ErrorMessages";
+import DatalistInput from "react-datalist-input";
+import "react-datalist-input/dist/styles.css";
 
 function App() {
   const [location, setLocation] = useState();
@@ -84,6 +86,7 @@ function App() {
           placeholder="Search Dimension"
           list="locations"
         />
+
         <datalist id="locations">
           {query.length > 0 &&
             suggestions?.map((el, index) => {

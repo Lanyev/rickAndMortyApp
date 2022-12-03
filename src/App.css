@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  background-color: #05292e;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.location-residents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #062226;
+}
+
+.resident-card {
+  color: #fff;
+  padding: 10px;
+}
+
+.resident-card-header {
+  position: relative;
+}

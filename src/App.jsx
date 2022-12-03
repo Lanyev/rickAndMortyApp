@@ -12,6 +12,9 @@ function App() {
   const [location, setLocation] = useState();
   const [locationName, setLocationName] = useState();
   const [showError, setShowError] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [text, setText] = useState();
+  const [query, setQuery] = useState("");
 
   const getDataDimension = (idDimension) => {
     if (idDimension) {
@@ -28,6 +31,18 @@ function App() {
     } else {
       alert("Ingrese un Valor");
     }
+  };
+
+  const getLocations = () => {
+    axios
+      .get(`https://rickandmortyapi.com/api/location/?name=${query}`)
+      .then((data) => setSuggestions(data.data?.results))
+      .catch((err) => {
+        if (err.response && err.response.status === 404) {
+          setSuggestions(null);
+          console.clear();
+        }
+      });
   };
 
   useEffect(() => {
@@ -56,14 +71,28 @@ function App() {
   return (
     <div className="App">
       <Navbar brand={"Rick and Morty Dimension"} />
-      <form className="search" onSubmit={handleSubmit}>
+      <form className="search" onSubmit={handleChangeInput}>
         <input
           id="searchValue"
-          value={locationName}
           type="text"
-          onChange={handleChangeInput}
+          name="query"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            getLocations();
+          }}
           placeholder="Search Dimension"
+          list="locations"
         />
+        <datalist id="locations">
+          {query.length > 0 &&
+            suggestions?.map((el, index) => {
+              if (el.name.toLowerCase().includes(query)) {
+                return <option key={index} value={el.name} />;
+              }
+              return "";
+            })}
+        </datalist>
         <button type="submit">Search</button>
         {showError ? <ErrorMessages /> : ""}
       </form>

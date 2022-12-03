@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 
 export const LocationFilter = ({ locationName, getNewLocation }) => {
   const [locationOptions, setLocationOptions] = useState();

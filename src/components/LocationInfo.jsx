@@ -2,7 +2,7 @@ import React from "react";
 
 const LocationInfo = ({ location }) => {
   return (
-    <article>
+    <article className="dimension-info">
       <h2>{location?.name}</h2>
       <ul>
         <li>

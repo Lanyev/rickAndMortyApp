@@ -23,14 +23,14 @@ html {
   width: 100%;
 }
 .search {
-  width: 50%;
+  width: 40vw;
   margin: 20px 0;
   display: flex;
   justify-content: center;
 }
 
 .search input {
-  width: 70%;
+  width: 60vw;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -39,7 +39,7 @@ html {
 }
 
 .search button {
-  width: 30%;
+  width: 40vw;
   background-color: #062226;
   color: white;
   padding: 14px 20px;

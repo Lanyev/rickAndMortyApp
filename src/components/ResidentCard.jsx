@@ -16,21 +16,24 @@ const ResidentCard = ({ urlResident }) => {
       <header className="resident-card-header">
         <img src={resident?.image} alt={resident?.name} />
         <div>
-          <div className="circle"></div>
-          <span>{resident?.status}</span>
+          <div className={`circle ${resident?.status}`}></div>
+          <span className="status-text">{resident?.status}</span>
         </div>
       </header>
       <section className="resident-card">
         <h2>{resident?.name}</h2>
         <ul>
           <li>
-            <span> Species: {resident?.species}</span>
+            <span className="info-1"> Species: </span>{" "}
+            <p>{resident?.species}</p>
           </li>
           <li>
-            <span> Origin: {resident?.origin.name} </span>
+            <span className="info-1"> Origin: </span>{" "}
+            <p>{resident?.origin.name}</p>
           </li>
           <li>
-            <span>Episodes where appear {resident?.episode.length} </span>
+            <span className="info-1">Episodes where appear: </span>
+            <p>{resident?.episode.length} </p>
           </li>
         </ul>
       </section>

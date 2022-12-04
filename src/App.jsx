@@ -7,15 +7,16 @@ import LocationInfo from "./components/LocationInfo";
 import ResidentList from "./components/ResidentList";
 import getRandomNumber from "../utils/getRandomNumber";
 import ErrorMessages from "./components/ErrorMessages";
-import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
+import ToTopButton from "./components/ToTopButton";
+import RefreshButton from "./components/RefreshButton";
+import SearchBox from "./components/SearchBox";
 
 function App() {
   const [location, setLocation] = useState();
   const [locationName, setLocationName] = useState();
   const [showError, setShowError] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
-  const [text, setText] = useState();
   const [query, setQuery] = useState("");
 
   const getDataDimension = (idDimension) => {
@@ -28,6 +29,7 @@ function App() {
           setShowError(true);
           setTimeout(() => {
             setShowError(false);
+            console.log(err);
           }, 2000);
         });
     } else {
@@ -42,7 +44,6 @@ function App() {
       .catch((err) => {
         if (err.response && err.response.status === 404) {
           setSuggestions(null);
-          console.clear();
         }
       });
   };
@@ -63,7 +64,7 @@ function App() {
   };
 
   const getNewLocation = (URL, name) => {
-    setLocationName(name);
+    setLocation(name);
     axios
       .get(URL)
       .then((res) => setLocation(res.data))
@@ -72,19 +73,20 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar brand={"Rick and Morty Dimension"} />
-      <form className="search" onSubmit={handleChangeInput}>
+      <Navbar brand={"Rick and Morty Random Dimension Viewer"} />
+      <form className="search" onSubmit={handleSubmit}>
         <input
           id="searchValue"
           type="text"
           name="query"
           value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
+          onChange={(event) => {
+            setQuery(event.target.value);
             getLocations();
           }}
           placeholder="Search Dimension"
           list="locations"
+          className="locations-list"
         />
 
         <datalist id="locations">
@@ -99,12 +101,11 @@ function App() {
         <button type="submit">Search</button>
         {showError ? <ErrorMessages /> : ""}
       </form>
-      <LocationFilter
-        locationName={locationName}
-        getNewLocation={getNewLocation}
-      />
+      <LocationFilter location={location} getNewLocation={getNewLocation} />
       <LocationInfo location={location} />
       <ResidentList location={location} />
+      <RefreshButton />
+      <ToTopButton />
     </div>
   );
 }

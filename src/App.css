@@ -3,15 +3,22 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
 }
 
 html {
-  background-color: #1c8a98;
   overflow-x: hidden;
+  background: linear-gradient(270deg, #45a049, #12363b);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
 }
 .App {
   display: flex;
   flex-direction: column;
+
   columns: 3fr;
   align-items: center;
 }
@@ -58,15 +65,38 @@ html {
   background-color: #45a049;
 }
 
+.refresh-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #062226;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
+}
+
 .location-residents {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
+  max-width: 1200px;
 }
 
 .location-residents .card:hover {
   background-color: #45a049;
+}
+
+#locations {
+  display: absolute;
 }
 
 .card {
@@ -74,13 +104,24 @@ html {
   flex-direction: column;
   align-items: center;
   width: 200px;
-  padding: 20px;
+  padding: 10px;
+  background-color: #062226;
   border: 1px solid #ccc;
+  border-radius: 8px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .card ul {
   list-style: none;
+}
+
+.resident-card {
+  color: whitesmoke;
+}
+
+.resident-card ul {
+  list-style: none;
+  color: white;
 }
 
 .resident-card-header img {
@@ -94,19 +135,88 @@ html {
   position: relative;
 }
 
+.resident-card-header > div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 3px;
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+}
+
+.status-text {
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.info-1 {
+  font-weight: bold;
+  color: hsla(0, 0%, 100%, 0.4);
+  font-size: 0.8em;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 45px;
+}
+
+.circle.Alive {
+  background-color: green;
+}
+
+.circle.Dead {
+  background-color: red;
+}
+
+.circle.unknown {
+  background-color: gray;
+}
+
 .dimension-info {
+  gap: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  margin-bottom: 20px;
   /* border: 1px solid #fff; */
   border-radius: 5px;
+  text-transform: uppercase;
+  color: #fff;
 }
 .dimension-info ul {
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
   list-style: none;
   padding: 0;
   margin: 0;
+  text-transform: uppercase;
+}
+
+.top-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #062226;
+  color: white;
+  padding: 14px 24px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.top-button:hover {
+  background-color: #45a049;
 }
 
 .errorMessage {
@@ -114,7 +224,7 @@ html {
   width: max-content;
   border-radius: 10px;
   position: absolute;
-  top: 0;
+  top: 10px;
   right: -100%;
   background-color: red;
   padding: 5px 15px;
@@ -134,5 +244,38 @@ html {
   }
   100% {
     right: 10px;
+  }
+}
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

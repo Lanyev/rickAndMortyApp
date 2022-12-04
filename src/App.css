@@ -45,7 +45,7 @@ html {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid #fff;
   border-radius: 4px;
 }
 
@@ -107,7 +107,7 @@ html {
   width: 200px;
   padding: 10px;
   background-color: #062226;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 8px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }

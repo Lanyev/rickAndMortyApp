@@ -10,11 +10,9 @@ import ErrorMessages from "./components/ErrorMessages";
 import "react-datalist-input/dist/styles.css";
 import ToTopButton from "./components/ToTopButton";
 import RefreshButton from "./components/RefreshButton";
-import SearchBox from "./components/SearchBox";
 
 function App() {
   const [location, setLocation] = useState();
-  const [locationName, setLocationName] = useState();
   const [showError, setShowError] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [query, setQuery] = useState("");
@@ -59,10 +57,6 @@ function App() {
     getDataDimension(dimensionSearch);
   };
 
-  const handleChangeInput = (event) => {
-    setLocationName(event.target.value);
-  };
-
   const getNewLocation = (URL, name) => {
     setLocation(name);
     axios
@@ -88,7 +82,6 @@ function App() {
           list="locations"
           className="locations-list"
         />
-
         <datalist id="locations">
           {query.length > 0 &&
             suggestions?.map((el, index) => {

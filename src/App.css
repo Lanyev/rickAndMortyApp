@@ -89,6 +89,7 @@ html {
   gap: 25px;
   justify-content: center;
   max-width: 1200px;
+  margin-bottom: 40px;
 }
 
 .location-residents .card:hover {

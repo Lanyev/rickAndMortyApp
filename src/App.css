@@ -246,6 +246,15 @@ html {
   margin: 0;
 }
 
+@media screen and (max-width: 600px) {
+  .refresh-button {
+    right: 20%;
+  }
+  .top-button {
+    left: 20%;
+  }
+}
+
 @keyframes showError {
   0% {
     right: -100%;

@@ -28,38 +28,51 @@ html {
   text-align: center;
   font-size: 1.5em;
   line-height: 1.5em;
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 
-.search {
-  width: 40vw;
-  margin: 20px 0;
+.navbar-content-search {
+  position: relative;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.search input {
-  width: 60vw;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #fff;
-  border-radius: 4px;
+.navbar-search {
+  width: 40%;
 }
 
-.search button {
-  width: 40vw;
-  background-color: #062226;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+.navbar-filter-link:hover {
+  color: #45a049;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
 }
 
-.search button:hover {
+.navbar-filter {
+  padding: 0.25rem 0;
+  color: #05292e;
+  background-color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  position: absolute;
+  top: 33px;
+  right: 13%;
+  width: 18%;
+  max-height: 85vh;
+  overflow-y: scroll;
+  z-index: -1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-filter li:hover {
   background-color: #45a049;
+  width: 100%;
 }
 
 .refresh-button {

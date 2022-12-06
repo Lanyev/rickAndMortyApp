@@ -1,31 +1,32 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export const LocationFilter = ({ locationName, getNewLocation }) => {
+const LocationFilter = ({ locationName, getNewLocation }) => {
   const [locationOptions, setLocationOptions] = useState();
 
   useEffect(() => {
-    if (!locationName) return setLocationOptions();
     const URL = `https://rickandmortyapi.com/api/location?name=${locationName}`;
 
+    if (!locationName) return setLocationOptions();
     axios
       .get(URL)
-      .then((res) => setLocationOptions(res.data.results))
+      .then(({ data }) => setLocationOptions(data.results))
       .catch((err) => console.log(err));
   }, [locationName]);
 
   return (
-    <ul>
-      {locationOptions?.map((locationOptions) => (
-        <li
-          onClick={() =>
-            getNewLocation(locationOptions.url, locationOptions.name)
-          }
-          key={locationOptions.url}
-        >
-          {locationOptions.name}
-        </li>
-      ))}
+    <ul className="navbar-filter">
+      {locationOptions?.map(
+        (locOpt) =>
+          locationName !== locOpt.name && (
+            <li
+              onClick={() => getNewLocation(locOpt.url, locOpt.name)}
+              key={locOpt.url}
+            >
+              {locOpt.name}
+            </li>
+          )
+      )}
     </ul>
   );
 };

@@ -13,9 +13,11 @@ import RefreshButton from "./components/RefreshButton";
 
 function App() {
   const [location, setLocation] = useState();
+  const [locationName, setLocationName] = useState();
   const [showError, setShowError] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [query, setQuery] = useState("");
+  const [change, setChange] = useState(false);
 
   const getDataDimension = (idDimension) => {
     if (idDimension) {
@@ -35,66 +37,57 @@ function App() {
     }
   };
 
-  const getLocations = () => {
-    axios
-      .get(`https://rickandmortyapi.com/api/location/?name=${query}`)
-      .then((data) => setSuggestions(data.data?.results))
-      .catch((err) => {
-        if (err.response && err.response.status === 404) {
-          setSuggestions(null);
-        }
-      });
+  // const getLocations = () => {
+  //   axios
+  //     .get(`https://rickandmortyapi.com/api/location/?name=${query}`)
+  //     .then((data) => setSuggestions(data.data?.results))
+  //     .catch((err) => {
+  //       if (err.response && err.response.status === 404) {
+  //         setSuggestions(null);
+  //       }
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   const randomDimension = getRandomNumber();
+  //   getDataDimension(randomDimension);
+  // }, []);
+
+  const searchRandomDimension = () => {
+    const randomDimension = getRandomNumber();
+    getDataDimension(randomDimension);
   };
 
   useEffect(() => {
-    const randomDimension = getRandomNumber();
-    getDataDimension(randomDimension);
-  }, []);
+    searchRandomDimension();
+  }, [change]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const dimensionSearch = event.target.searchValue.value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const dimensionSearch = e.target.searchValue.value;
     getDataDimension(dimensionSearch);
   };
 
+  const handleChange = (e) => {
+    setLocationName(e.target.value);
+  };
   const getNewLocation = (URL, name) => {
-    setLocation(name);
+    setLocationName(name);
     axios
       .get(URL)
-      .then((res) => setLocation(res.data))
+      .then(({ data }) => setLocation(data))
       .catch((err) => console.log(err));
   };
 
   return (
     <div className="App">
-      <Navbar brand={"Rick and Morty Random Dimension Viewer"} />
-      <form className="search" onSubmit={handleSubmit}>
-        <input
-          id="searchValue"
-          type="text"
-          name="query"
-          value={query}
-          onChange={(event) => {
-            setQuery(event.target.value);
-            getLocations();
-          }}
-          placeholder="Search Dimension"
-          list="locations"
-          className="locations-list"
-        />
-        <datalist id="locations">
-          {query.length > 0 &&
-            suggestions?.map((el, index) => {
-              if (el.name.toLowerCase().includes(query)) {
-                return <option key={index} value={el.name} />;
-              }
-              return "";
-            })}
-        </datalist>
-        <button type="submit">Search</button>
-        {showError ? <ErrorMessages /> : ""}
-      </form>
-      <LocationFilter location={location} getNewLocation={getNewLocation} />
+      <Navbar
+        brand={"Rick and Morty Random Dimension Viewer"}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        locationName={locationName}
+        getNewLocation={getNewLocation}
+      />
       <LocationInfo location={location} />
       <ResidentList location={location} />
       <RefreshButton />

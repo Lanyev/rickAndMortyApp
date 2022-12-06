@@ -37,22 +37,6 @@ function App() {
     }
   };
 
-  // const getLocations = () => {
-  //   axios
-  //     .get(`https://rickandmortyapi.com/api/location/?name=${query}`)
-  //     .then((data) => setSuggestions(data.data?.results))
-  //     .catch((err) => {
-  //       if (err.response && err.response.status === 404) {
-  //         setSuggestions(null);
-  //       }
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   const randomDimension = getRandomNumber();
-  //   getDataDimension(randomDimension);
-  // }, []);
-
   const searchRandomDimension = () => {
     const randomDimension = getRandomNumber();
     getDataDimension(randomDimension);

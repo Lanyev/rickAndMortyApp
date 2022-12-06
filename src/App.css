@@ -41,7 +41,7 @@ html {
 }
 
 .navbar-search {
-  width: 40%;
+  width: 100vw;
 }
 
 .navbar-filter-link:hover {
@@ -57,8 +57,9 @@ html {
   font-size: 1rem;
   position: absolute;
   top: 33px;
-  right: 13%;
-  width: 18%;
+  right: 45%;
+  width: 20%;
+  border-radius: 0 0 10px 10px;
   max-height: 85vh;
   overflow-y: scroll;
   z-index: -1;
@@ -75,10 +76,36 @@ html {
   width: 100%;
 }
 
+.navbar-input {
+  width: 20vw;
+  height: 66%;
+  border: 1px solid #45a049;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #05292e;
+  color: white;
+}
+
+.navbar button {
+  width: 10vw;
+  height: 66%;
+  background-color: #45a049;
+  padding: 3px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .refresh-button {
   position: fixed;
   bottom: 20px;
-  right: 30%;
+  right: 40%;
   background-color: #45a049;
   color: white;
   padding: 10px 40px;
@@ -91,6 +118,25 @@ html {
 
 .refresh-button:hover {
   background-color: #7bcd7f;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 2rem;
+}
+.location-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 30px;
+  gap: 20px;
 }
 
 .location-residents {
@@ -247,11 +293,48 @@ html {
 }
 
 @media screen and (max-width: 600px) {
+  .navbar-content-search {
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar-filter {
+    right: 0;
+    width: 100%;
+  }
+
+  .navbar-input {
+    width: 50vw;
+    height: 40px;
+  }
+
+  .navbar button {
+    width: 30vw;
+    height: 40px;
+  }
   .refresh-button {
     right: 20%;
   }
   .top-button {
     left: 20%;
+  }
+
+  .location-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 1rem;
+  }
+  .location-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+    gap: 20px;
   }
 }
 

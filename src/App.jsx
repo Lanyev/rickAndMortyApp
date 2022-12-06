@@ -2,7 +2,6 @@ import Navbar from "./components/Navbar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
-import LocationFilter from "./components/LocationFilter";
 import LocationInfo from "./components/LocationInfo";
 import ResidentList from "./components/ResidentList";
 import getRandomNumber from "../utils/getRandomNumber";
@@ -15,9 +14,8 @@ function App() {
   const [location, setLocation] = useState();
   const [locationName, setLocationName] = useState();
   const [showError, setShowError] = useState(false);
-  const [suggestions, setSuggestions] = useState([]);
-  const [query, setQuery] = useState("");
   const [change, setChange] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getDataDimension = (idDimension) => {
     if (idDimension) {
@@ -40,6 +38,7 @@ function App() {
   const searchRandomDimension = () => {
     const randomDimension = getRandomNumber();
     getDataDimension(randomDimension);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -62,6 +61,9 @@ function App() {
       .then(({ data }) => setLocation(data))
       .catch((err) => console.log(err));
   };
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
 
   return (
     <div className="App">

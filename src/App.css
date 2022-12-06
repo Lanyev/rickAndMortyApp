@@ -78,10 +78,10 @@ html {
 .refresh-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background-color: #062226;
+  right: 30%;
+  background-color: #45a049;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 40px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -90,7 +90,7 @@ html {
 }
 
 .refresh-button:hover {
-  background-color: #45a049;
+  background-color: #7bcd7f;
 }
 
 .location-residents {
@@ -215,11 +215,11 @@ html {
 
 .top-button {
   position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background-color: #062226;
+  bottom: 20px;
+  left: 40%;
+  background-color: #45a049;
   color: white;
-  padding: 14px 24px;
+  padding: 10px 40px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -227,7 +227,7 @@ html {
   font-size: 16px;
 }
 .top-button:hover {
-  background-color: #45a049;
+  background-color: #7bcd7f;
 }
 
 .errorMessage {

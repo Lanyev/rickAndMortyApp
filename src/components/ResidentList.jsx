@@ -1,10 +1,10 @@
 import React from "react";
 import ResidentCard from "./ResidentCard";
 
-export const ResidentList = ({ location }) => {
+export const ResidentList = ({ residentsFiltered }) => {
   return (
     <section className="location-residents">
-      {location?.residents.map((urlResident) => (
+      {residentsFiltered?.map((urlResident) => (
         <ResidentCard key={urlResident} urlResident={urlResident} />
       ))}
     </section>

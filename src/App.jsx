@@ -104,7 +104,7 @@ function App() {
       <ResidentList location={location} residentsFiltered={residentsFiltered} />
       <RefreshButton />
       <ToTopButton />
-      <ul>
+      <ul className="pageSelector">
         {getAllPages().map((page) => (
           <li
             key={page}
